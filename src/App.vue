@@ -1,32 +1,52 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
-  </div>
+  <v-app>
+<!--    <router-link to="/">Web</router-link>-->
+<!--    <router-link to="/documentos">Documentos</router-link>-->
+<!--    <router-link to="/login">Login</router-link>-->
+<!--    <router-link to="/registro">Registro</router-link>-->
+
+    <template v-if="plantilla == 'web'">
+      plantilla web
+      <router-view></router-view>
+    </template>
+
+    <template v-if="plantilla == 'auth'">
+      <router-view></router-view>
+    </template>
+
+    <template v-if="plantilla == 'dashboard'">
+      <drawer></drawer>
+      <navbar></navbar>
+      <v-content>
+        <router-view></router-view>
+      </v-content>
+      <footerr></footerr>
+    </template>
+
+
+  </v-app>
 </template>
 
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script>
+import Drawer from "./components/layout/Drawer";
+import Navbar from "./components/layout/Navbar";
+import Footerr from "./components/layout/Footer"
+import store from './store'
 
-#nav {
-  padding: 30px;
-}
+export default {
+  name: 'App',
+  components: {
+    Drawer,
+    Navbar,
+    Footerr
+  },
+  data: () => ({
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
-</style>
+  }),
+  computed: {
+    plantilla(){
+      return store.state.plantilla;
+    }
+  }
+};
+</script>

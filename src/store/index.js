@@ -5,8 +5,12 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    plantilla: false
   },
   mutations: {
+    generaPlantilla(state, plantilla) {
+      state.plantilla = plantilla;
+    }
   },
   actions: {
   },
