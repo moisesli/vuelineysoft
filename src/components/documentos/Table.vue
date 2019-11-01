@@ -1,16 +1,19 @@
 <template>
-  <v-container fluid>
-    <tabla></tabla>
-  </v-container>
+  <v-data-table :headers="headers" :items="desserts" :items-per-page="5" class="elevation-1">
+  </v-data-table>
 </template>
 
 <script>
-  import Tabla from '../documentos/Table'
   export default {
     data () {
       return {
         headers: [
-          { text: 'Dessert (100g serving)', align: 'left', sortable: false, value: 'name'},
+          {
+            text: 'Dessert (100g serving)',
+            align: 'left',
+            sortable: false,
+            value: 'name',
+          },
           { text: 'Calories', value: 'calories' },
           { text: 'Fat (g)', value: 'fat' },
           { text: 'Carbs (g)', value: 'carbs' },
@@ -101,8 +104,5 @@
         ],
       }
     },
-    components:{
-      Tabla
-    }
   }
 </script>
