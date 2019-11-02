@@ -1,6 +1,11 @@
 <template>
   <v-container fluid>
-    <tabla></tabla>
+    <v-flex xs12 class="pa-5">
+      <v-data-table>
+
+      </v-data-table>
+      <tabla></tabla>
+    </v-flex>
   </v-container>
 </template>
 
