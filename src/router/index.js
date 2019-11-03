@@ -52,26 +52,35 @@ const router = new VueRouter({
 router.beforeEach((to, from, next) => {
 
   let usuario = firebase.auth().currentUser;
+
   let web = to.matched.some(record => record.meta.web);
   let auth = to.matched.some(record => record.meta.auth);
   let dashboard = to.matched.some(record => record.meta.dashboard);
 
   console.log(!!usuario)
   if (web == true) {
+    // Cualquiera puede tener acceso a la web registrado o no
     store.commit('generaPlantilla','web')
-  }
-
-  if (auth == true) {
+    next()
+  }else if (auth == true && !!usuario == false) {
+    // si entra a auth y no esta autenticado puede entrar, si esta autenticado
+    // y entra a login no entrara
     store.commit('generaPlantilla','auth')
+    next()
+  } else if(auth == true && !!usuario == true){
+    // Si entra a auth y esta autenticado le redireccionara a home 
+    store.commit('generaPlantilla','dashboard')
+    next('/documentos')
+  }
+  else if (dashboard == true && !!usuario == true) {
+    // Si entra a cualquier ruta del admin y autenticado
+    store.commit('generaPlantilla','dashboard')
+    next()
+  } else{
+    // si no esta autenticado y entra al dashboard se va a login
+    next('/login')
   }
   
-  if (dashboard == true && usuario) {
-    store.commit('generaPlantilla','dashboard')
-  }
-
-
-
-  next()
 
 })
 

@@ -18,22 +18,47 @@
 
 
     <v-list dense>
+
+      <!-- Documentos -->
       <v-list-item @click>
         <v-list-item-action>
           <v-icon>mdi-home</v-icon>
         </v-list-item-action>
         <v-list-item-content>
-          <v-list-item-title>Home</v-list-item-title>
+          <v-list-item-title>Documentos</v-list-item-title>
         </v-list-item-content>
       </v-list-item>
+
+      <!-- Productos -->
       <v-list-item @click>
         <v-list-item-action>
           <v-icon>mdi-contact-mail</v-icon>
         </v-list-item-action>
         <v-list-item-content>
-          <v-list-item-title>Contact</v-list-item-title>
+          <v-list-item-title>Productos</v-list-item-title>
         </v-list-item-content>
       </v-list-item>
+
+      <!-- Proveedores -->
+      <v-list-item @click>
+        <v-list-item-action>
+          <v-icon>mdi-contact-mail</v-icon>
+        </v-list-item-action>
+        <v-list-item-content>
+          <v-list-item-title>Proveedores</v-list-item-title>
+        </v-list-item-content>
+      </v-list-item>
+
+      <!-- Categorias -->
+      <v-list-item @click>
+        <v-list-item-action>
+          <v-icon>mdi-contact-mail</v-icon>
+        </v-list-item-action>
+        <v-list-item-content>
+          <v-list-item-title>Categorias</v-list-item-title>
+        </v-list-item-content>
+      </v-list-item>
+
     </v-list>
 
   </v-navigation-drawer>
