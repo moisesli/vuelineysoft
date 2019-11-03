@@ -1,11 +1,11 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import store from '../store'
-
 import Documentos from '../components/documentos/Documentos'
 import Login from '../components/auth/Login'
 import Registro from '../components/auth/Registro'
 import Web from '../components/web/Web'
+import firebase from 'firebase'
 
 Vue.use(VueRouter)
 
@@ -51,12 +51,12 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
 
+  let usuario = firebase.auth().currentUser;
   let web = to.matched.some(record => record.meta.web);
   let auth = to.matched.some(record => record.meta.auth);
   let dashboard = to.matched.some(record => record.meta.dashboard);
 
-  // console.log(to)
-
+  console.log(!!usuario)
   if (web == true) {
     store.commit('generaPlantilla','web')
   }
@@ -64,10 +64,12 @@ router.beforeEach((to, from, next) => {
   if (auth == true) {
     store.commit('generaPlantilla','auth')
   }
-
-  if (dashboard == true) {
+  
+  if (dashboard == true && usuario) {
     store.commit('generaPlantilla','dashboard')
   }
+
+
 
   next()
 

@@ -1,12 +1,13 @@
 <template>
-  <v-data-table
-      :headers="headers"
-      :items="desserts"
-      :items-per-page="5"
-      class="elevation-1"
-  >
-    <template v-slot:items="props">
-      <td></td>
+  <v-data-table :headers="headers" :items="desserts" class="elevation-1">
+
+    <template v-slot:header.iron="{ header }">
+      <span class="">Saldra</span>
+    </template>
+
+    <!-- Cambia un item -->
+    <template v-slot:item.iron="{ item }">
+      4.3
     </template>
   </v-data-table>
 </template>
